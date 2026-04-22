@@ -1,0 +1,21 @@
+[pr_reviewer]
+num_code_suggestions = 5
+num_max_findings = 5
+
+# Turn off the default noisy table summaries:
+require_tests_review = false
+require_estimate_effort_to_review = false
+require_security_review = false
+require_ticket_analysis_review = false
+enable_intro_text = false
+enable_review_labels_security = false
+enable_review_labels_effort = false
+
+# Put your custom prompt here to tell the AI exactly how to review:
+extra_instructions = """
+Please review this PR according to the following rules:
+1. Format your response using bullet points only.
+2. Focus heavily on security vulnerabilities and performance issues.
+3. Ignore missing comments or documentation.
+4. Speak like a senior staff engineer giving constructive feedback.
+"""

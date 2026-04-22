@@ -1,0 +1,18 @@
+services:
+  pr-agent:
+    image: codiumai/pr-agent:latest
+    container_name: pr-agent-service
+    entrypoint: ["/bin/sh", "-c", "tail -f /dev/null"]
+    env_file: .env
+    volumes:
+      - ./configuration.toml:/app/pr_agent/settings/.secrets.toml
+    environment:
+      - CONFIG.GIT_PROVIDER=github
+      - GITHUB.USER_TOKEN=${GITHUB_TOKEN}
+      - GITHUB.RATELIMIT_RETRIES=5
+      - GROQ.KEY=${GROQ_API_KEY}
+      - CONFIG.MODEL=groq/llama-3.3-70b-versatile
+      - CONFIG.SERVER_TYPE=flask  # Use flask for local webhook testing
+    ports:
+      - "3000:3000"
+    restart: always
